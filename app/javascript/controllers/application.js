@@ -7,14 +7,23 @@ application.debug = false
 window.Stimulus   = application
 
 console.log('Welcome to Password Pusher! ( ◑‿◑)ɔ┏🍟--🍔┑٩(^◡^ )')
-console.log(' --> 🏝 May all your pushes be read once, stored securely and expired quickly.')
-        
+console.log(' --> 🏝 May all your pushes be stored securely, read once and expired quickly.')
+
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-if (prefersDarkScheme.matches) {
-    document.body.classList.add('dark-mode')
-} else {
-    document.body.classList.remove('dark-mode')
+// Function to handle theme changes
+const handleThemeChange = (e) => {
+    if (e.matches) {
+        document.documentElement.setAttribute('data-bs-theme', 'dark')
+    } else {
+        document.documentElement.setAttribute('data-bs-theme', 'light')
+    }
 }
+
+// Initial check
+handleThemeChange(prefersDarkScheme);
+
+// Listen for changes
+prefersDarkScheme.addEventListener('change', handleThemeChange);
 
 export { application }
